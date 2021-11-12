@@ -10,52 +10,15 @@
             </form>
             <div class="todo-lists mt-3 text-white">
                 <div class="pin-top">
-                    <div class="list d-flex mb-3" v-for="(list, index) in pinnedItems" :key="index">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" v-model="list.isDone" value="" :id="`item-list-pinned-${index}`">
-                            <label :class="{'text-decoration-line-through' : list.isDone}" class="form-check-label text-data"
-                                   :for="`item-list-pinned-${index}`">
-                                {{ list.title }}
-                            </label>
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                ...
-                            </button>
-                            <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton1">
-                                <li><a @click.prevent="list.isPinned = false" class="dropdown-item" href="#"><i class="me-3 fas fa-thumbtack"></i> Unpin on the
-                                    Bottom</a></li>
-                                <li><a class="delete dropdown-item" @click.prevent="deleteTask(index)" href="#"> <i
-                                    class="me-3 fa fa-trash"></i>Delete</a></li>
-                            </ul>
-                        </div>
+                    <div class="list mb-3" v-for="(list, index) in pinnedItems" :key="index">
+                        <list :list="list" :index=index :inputData=inputData ></list>
                     </div>
                 </div>
 
                 <div class="all-task">
-                    <div class="list d-flex mb-3" v-for="(list, index) in generalItems" :key="index">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" v-model="list.isDone" value="" :id="`item-list-${index}`">
-                            <label @dblclick="editData(index)" :class="{'text-decoration-line-through' : list.isDone}" class="form-check-label text-data"
-                                   :for="`item-list-${index}`">
-                                {{ list.title }}
-                            </label>
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id=""
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                ...
-                            </button>
-                            <ul class="dropdown-menu shadow" aria-labelledby="">
-                                <li><a @click.prevent="list.isPinned = true" class="dropdown-item" href="#"><i class="me-3 fas fa-thumbtack"></i> Pin on the
-                                    top</a></li>
-                                <li><a class="delete dropdown-item" @click.prevent="deleteTask(index)" href="#"> <i
-                                    class="me-3 fa fa-trash"></i>Delete</a></li>
-                            </ul>
-                        </div>
+                    <div class="list mb-3" v-for="(list, index) in generalItems" :key="index">
+                        <list :list="list" :index=index :inputData=inputData ></list>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -63,9 +26,11 @@
 </template>
 
 <script>
+import List from "../components/List";
 export default {
-    name   : "TodoList",
-    data   : () => ({
+    name    : "TodoList",
+    components: {List},
+    data    : () => ({
         lists    : [],
         inputData: '',
         editIndex: '',
@@ -79,27 +44,20 @@ export default {
             return this.lists.filter(task => task.isPinned === false)
         }
     },
-    methods: {
+    methods : {
         saveData() {
-            if(this.editIndex !== ''){
+            if (this.editIndex !== '') {
                 this.lists[this.editIndex].title = this.inputData
-            }else {
+            } else {
                 this.lists.push({
-                    title : this.inputData,
-                    isDone: false,
+                    title   : this.inputData,
+                    isDone  : false,
                     isPinned: false,
                 })
             }
             this.inputData = '';
             this.editIndex = '';
         },
-        deleteTask(index) {
-            this.lists.splice(index, 1)
-        },
-        editData(index){
-            this.editIndex = index
-            this.inputData = this.lists[index].title
-        }
 
     }
 }
