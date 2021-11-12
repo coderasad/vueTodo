@@ -1,0 +1,185 @@
+@import "~bootstrap/scss/bootstrap";
+
+$fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/v4-shims';
+
+
+#todo-section {
+   .btn-check:focus + .btn, .btn:focus {
+      box-shadow : none;
+   }
+
+   .dropdown-item:hover, .dropdown-item:focus {
+      color            : inherit;
+      background-color : transparent;
+   }
+
+   .form-check-input:focus {
+      box-shadow   : none;
+      border-color : #21252a;
+   }
+
+   .list {
+
+   }
+
+   .pin-top {
+      //display : none;
+      border-bottom : 1px solid #343A40;
+      margin-bottom : 20px;
+   }
+
+   .text-warning {
+      color : #b3b3b3;
+   }
+
+   .bg-color {
+      background : #3C424A;
+      min-height : 80vh;
+      width      : 560px;
+   }
+
+   .input-group {
+      height : 46px;
+   }
+
+   .form-control {
+      background   : #343A40;
+      border-color : #30343A;
+      border-left  : none;
+      color        : #b3b3b3;
+
+      &:focus {
+         box-shadow : none;
+      }
+   }
+
+   .form-check-input[type="checkbox"] {
+      background-color : #484F59;
+   }
+
+   .form-check {
+      width        : 70%;
+      margin-right : auto;
+   }
+
+   .form-check-input:checked {
+      border-color : #21252a;
+   }
+
+   .text-data {
+      overflow           : hidden;
+      display            : -webkit-box;
+      -webkit-box-orient : vertical;
+      -webkit-line-clamp : 1;
+      color              : #b3b3b3;
+
+      &:hover {
+         height  : auto;
+         display : block;
+      }
+
+
+   }
+
+   .input-group-text {
+      border-right : none;
+      background   : #343A40;
+      border-color : #30343A;
+   }
+
+   .dropdown-toggle {
+      color       : #b3b3b3;
+      font-size   : 30px;
+      line-height : 0;
+
+      &:after {
+         content : none;
+      }
+   }
+
+   .dropdown-item {
+      color : #A2AAB6;
+   }
+
+   .dropdown-menu {
+      background : #484F59;
+      inset      : unset !important;
+      right      : 0 !important;
+
+      &:after {
+         content   : "";
+         position  : absolute;
+         border    : 5px solid #484f59;
+         top       : -5px;
+         right     : 15px;
+         transform : rotate(45deg);
+      }
+
+      .fa-thumbtack {
+         transform : rotate(-45deg);
+      }
+
+      .delete:hover {
+         color : #dc3545;
+      }
+   }
+
+}
+
+
+.slider-one {
+   .owl-nav {
+      position : absolute;
+      top      : -50px;
+      right    : 0;
+      margin   : 0 !important;
+
+      > * {
+         position : relative;
+
+         &:after {
+            background    : green !important;
+            position      : absolute;
+            content       : "<";
+            width         : 100%;
+            left          : 0;
+            border-radius : 3px;
+            top           : 0;
+            line-height   : 28px;
+            height        : 30px;
+
+         }
+      }
+
+      .owl-next {
+         margin-right : 0 !important;
+
+         &:after {
+            content : ">";
+         }
+      }
+   }
+
+   .btn-nav {
+      position      : absolute;
+      right         : 0;
+      top           : 0;
+      background    : green;
+      color         : #fff;
+      padding       : 5px 10px;
+      border-radius : 5px;
+      width         : 30px;
+   }
+
+   .prev-nav {
+      right : 40px;
+   }
+
+}
+
