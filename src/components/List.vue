@@ -39,6 +39,8 @@ export default {
             this.$parent.lists = this.$parent.lists.filter((list) => {
                 return list.title !== task.title
             })
+
+             this.$emit('somethingOccured', "Testing")
         },
         editData(index) {
             this.$parent.editIndex = index

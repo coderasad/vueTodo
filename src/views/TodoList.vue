@@ -17,7 +17,8 @@
 
                 <div class="all-task">
                     <div class="list mb-3" v-for="(list, index) in generalItems" :key="index">
-                        <list :list="list" :index=index :inputData=inputData ></list>
+                        <list ref="firstList" :list="list" :index=index :inputData=inputData ></list>
+                        <list @somethingOccured="catchSomethingOccured" ref="secondList" :list="list" :index=index :inputData=inputData ></list>
                     </div>
                 </div>
             </div>
@@ -45,6 +46,9 @@ export default {
         }
     },
     methods : {
+        catchSomethingOccured(data) {
+            console.log(data);
+        },
         saveData() {
             if (this.editIndex !== '') {
                 this.lists[this.editIndex].title = this.inputData
