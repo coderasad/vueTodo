@@ -16,10 +16,10 @@
             </button>
             <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton1">
                 <li>
-                    <a v-if="list.isPinned === true" @click.prevent="list.isPinned = false" class="dropdown-item" href="#"><i
+                    <a @click="pinTask(list)" v-if="list.isPinned === true" @click.prevent="list.isPinned = false" class="dropdown-item" href="#"><i
                         class="me-3 fas fa-thumbtack"></i>Unpin
                     </a>
-                    <a v-if="list.isPinned === false " @click.prevent="list.isPinned = true" class="dropdown-item" href="#"><i
+                    <a @click="pinTask(list)" v-if="list.isPinned === false " @click.prevent="list.isPinned = true" class="dropdown-item" href="#"><i
                         class="me-3 fas fa-thumbtack"></i>Pin on the top
                     </a>
                 </li>
@@ -37,16 +37,23 @@ export default {
     methods:{
         deleteTask(task) {
             this.$parent.lists = this.$parent.lists.filter((list) => {
-                return list.title !== task.title
+                return list.id !== task.id;
             })
 
-             this.$emit('somethingOccured', "Testing")
+            this.$emit('updateLocalStorage');
         },
         editData(index) {
             this.$parent.editIndex = index
             this.$parent.inputData = this.list.title
-            this.$parent.inputData = this.$parent.lists[index].title
+            this.$parent.inputData = this.$parent.lists[index].title;
+
+            this.$emit('updateLocalStorage');
         },
+        pinTask(index) {
+            console.log(index)
+            index.isPinned = index.isPinned !== true;
+            this.$emit('updateLocalStorage');
+        }
     }
 
 }
