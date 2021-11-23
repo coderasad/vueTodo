@@ -2,11 +2,11 @@
     <div class="d-flex">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" v-model="list.isDone" value=""
-                   :id="`item-list-pinned-${index}`">
+                   :id="`item-list-pinned-${list.id}`">
             <label @dblclick="editData(index)" :class="{'text-decoration-line-through' : list.isDone}"
                    class="form-check-label text-data"
-                   :for="`item-list-pinned-${index}`">
-                {{ list.title }}
+                   :for="`item-list-pinned-${list.id}`">
+                {{ list.title | capitalize }}
             </label>
         </div>
         <div class="dropdown">
@@ -46,13 +46,34 @@ export default {
             this.$parent.editIndex = index
             this.$parent.inputData = this.list.title
             this.$parent.inputData = this.$parent.lists[index].title;
-
             this.$emit('updateLocalStorage');
         },
         pinTask(index) {
-            console.log(index)
             index.isPinned = index.isPinned !== true;
             this.$emit('updateLocalStorage');
+        }
+    },
+
+    filters:{
+        uppercase: function(value) {
+            return value.toUpperCase();
+        },
+        //  first word of an input string
+        capitalize2: function(value) {
+            return value.charAt(0).toUpperCase() + value.slice(1);
+        },
+        //  capitalize the first letter
+        capitalize: function(value) {
+            const arr = value.split(" ");
+
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+
+            }
+            return arr.join(" ");
+        },
+        trim: function(value) {
+            return value.trim();
         }
     }
 
