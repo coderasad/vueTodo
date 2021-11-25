@@ -73,13 +73,14 @@ export default {
     components: {carousel},
     methods   : {
         getJobs() {
-            axios.get('https://hr.mediusware.xyz/api/jobs/').then(res => {
+         /*   axios.get('https://hr.mediusware.xyz/api/jobs/').then(res => {
                 this.jobs = res.data;
-            })
+            })*/
         }
     },
     mounted() {
         this.getJobs();
+        this.$root.newLoginStatus = JSON.parse(localStorage.getItem('loginUserStatus'));
     }
 }
 </script>

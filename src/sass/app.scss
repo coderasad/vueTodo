@@ -131,8 +131,6 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
    }
 
 }
-
-
 .slider-one {
    .owl-nav {
       position : absolute;
@@ -181,5 +179,10 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
       right : 40px;
    }
 
+}
+
+
+.color-gradient {
+   background-image : linear-gradient(to right top, #a59825, #fde400);
 }
 

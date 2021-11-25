@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import TodoList from "../views/TodoList";
 import Layout from "../views/Layout";
+import Register from "../views/Register";
+import Login from "../views/Login";
+// import Login from "../components/Login";
+// import Register from "../components/Registration";
 
 Vue.use(VueRouter)
 
@@ -25,6 +29,22 @@ const routes = [
                 component: TodoList,
                 meta:{
                     title:'Todo page'
+                }
+            },
+            {
+                path     : '/register',
+                name     : 'register',
+                component: Register,
+                meta:{
+                    title:'Register page'
+                }
+            },
+            {
+                path     : '/login',
+                name     : 'login',
+                component: Login,
+                meta:{
+                    title:'Login page'
                 }
             }
         ]
